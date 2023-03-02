@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Slices from "./Slices";
+import { setForeground } from "./foregroundSlice";
 
 const MODES = [3, 5, 9];
 
@@ -8,20 +9,21 @@ const StripSequencing = () => {
   const [slices, setSlices] = useState(null);
   const [active, setActive] = useState(false);
   const [slicesNumber, setSlicesNumber] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null);
 
-  const bgImage = useSelector((state) => state.active);
-  const image = "https://i.ibb.co/q0VXbjd/front.png";
-  const image2 = "https://iili.io/HuUEZFI.png";
+  const frontImages = useSelector((state) => state.foreground.frontImages);
+  const frontImage = useSelector((state) => state.foreground.active);
+  const bgImageSrc = useSelector((state) => state.active);
+
+  const dispatch = useDispatch();
 
   const sliceSize = {
     width: 848,
-    height: 477,
+    height: 477
   };
 
   const style = {
     display: "grid",
-    gridTemplateColumns: `repeat(${slices},${sliceSize.width / slices}px)`,
+    gridTemplateColumns: `repeat(${slices},${sliceSize.width / slices}px)`
   };
 
   const getSlicesNumber = (item) => {
@@ -31,21 +33,6 @@ const StripSequencing = () => {
     }
     setSlicesNumber(array);
   };
-
-  const frontImages = [
-    {
-      width: 712,
-      height: 1200,
-      src: image,
-      label: "First image",
-    },
-    {
-      width: 1174,
-      height: 1200,
-      src: image2,
-      label: "Second image",
-    },
-  ];
 
   const init = (item) => {
     setSlices(item);
@@ -64,17 +51,21 @@ const StripSequencing = () => {
         sliceSize={sliceSize}
         slicesNumber={slicesNumber}
         slices={slices}
-        frontImage={imageSrc}
-        backgroundImage={bgImage}
+        frontImage={frontImage || {}}
+        backgroundImageSrc={bgImageSrc}
       />
     </div>
   ) : (
     <div style={{ display: "flex" }}>
-      {frontImages.map((img) => (
-        <button onClick={() => setImageSrc(img.src)}>{img.label}</button>
+      {frontImages.map((img, index) => (
+        <button key={img.src} onClick={() => dispatch(setForeground(index))}>
+          {img.label}
+        </button>
       ))}
       {MODES.map((item) => (
-        <button onClick={() => init(item)}>{item}</button>
+        <button key={item} onClick={() => init(item)}>
+          {item}
+        </button>
       ))}
     </div>
   );

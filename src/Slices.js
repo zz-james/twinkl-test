@@ -6,7 +6,7 @@ const Slices = ({
   slicesNumber,
   slices,
   frontImage,
-  backgroundImage,
+  backgroundImageSrc
 }) => {
   return slicesNumber.map((slice) => (
     <Slice
@@ -15,7 +15,7 @@ const Slices = ({
       id={slice.id}
       slices={slices}
       frontImage={frontImage}
-      backgroundImage={backgroundImage}
+      backgroundImageSrc={backgroundImageSrc}
     />
   ));
 };

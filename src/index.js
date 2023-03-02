@@ -1,12 +1,18 @@
 import React, { Fragment } from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
+
 import Piece from "./Piece";
+
+import store from "./store";
 
 const App = () => {
   return (
-    <Fragment>
-      <Piece />
-    </Fragment>
+    <Provider store={store}>
+      <Fragment>
+        <Piece />
+      </Fragment>
+    </Provider>
   );
 };
 
