@@ -1,0 +1,26 @@
+{
+  "name": "react-konva-export-demo",
+  "description": "react-konva demo export demo",
+  "version": "1.0.0",
+  "keywords": [
+    "canvas",
+    "react",
+    "konva"
+  ],
+  "dependencies": {
+    "@reduxjs/toolkit": "1.9.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-konva": "17.0.2-0",
+    "react-redux": "8.0.5"
+  },
+  "devDependencies": {
+    "react-scripts": "2.0.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
