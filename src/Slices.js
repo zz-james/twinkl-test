@@ -1,13 +1,12 @@
 import React from "react";
 import Slice from "./Slice";
 
-const Slices = ({
-  sliceSize,
-  slicesNumber,
-  slices,
-  frontImage,
-  backgroundImage,
-}) => {
+const Slices = ({ sliceSize, slices, frontImage, backgroundImageSrc }) => {
+  let slicesNumber = [];
+  for (let i = 0; i < slices; i++) {
+    slicesNumber.push({ id: i });
+  }
+
   return slicesNumber.map((slice) => (
     <Slice
       sliceSize={sliceSize}
@@ -15,7 +14,7 @@ const Slices = ({
       id={slice.id}
       slices={slices}
       frontImage={frontImage}
-      backgroundImage={backgroundImage}
+      backgroundImageSrc={backgroundImageSrc}
     />
   ));
 };

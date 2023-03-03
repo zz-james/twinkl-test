@@ -15,12 +15,23 @@
     "react-redux": "8.0.5"
   },
   "devDependencies": {
-    "react-scripts": "2.0.4"
+    "@cypress/react": "7.0.2",
+    "@cypress/webpack-dev-server": "3.3.0",
+    "cypress": "12.7.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test:cypress": "npx cypress run --component",
+    "test:cypress:i": "npx cypress open --component",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
