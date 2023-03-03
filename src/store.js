@@ -1,13 +1,12 @@
-/* eslint-disable import/prefer-default-export */
 import { configureStore } from "@reduxjs/toolkit";
-import activeReducer from "./activeSlice";
+import backgroundReducer from "./backgroundSlice";
 import foregroundReducer from "./foregroundSlice";
 
 const store = configureStore({
   reducer: {
-    active: activeReducer,
-    foreground: foregroundReducer
-  }
+    background: backgroundReducer,
+    foreground: foregroundReducer,
+  },
 });
 
 export default store;

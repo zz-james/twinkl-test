@@ -1,19 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-
-import Piece from "./Piece";
-
-import store from "./store";
-
-const App = () => {
-  return (
-    <Provider store={store}>
-      <Fragment>
-        <Piece />
-      </Fragment>
-    </Provider>
-  );
-};
+import App from "./App";
 
 render(<App />, document.getElementById("root"));

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 const bgImage = "https://www.teahub.io/photos/full/256-2563481_painting.jpg";
-export const activeSlice = createSlice({
-  name: "active",
+export const backgroundSlice = createSlice({
+  name: "background",
   initialState: bgImage,
-  reducers: {}
+  reducers: {},
 });
 
-export default activeSlice.reducer;
+export default backgroundSlice.reducer;

@@ -1,49 +1,49 @@
 import React from "react";
 
-const Slice = ({ id, sliceSize, slices, frontImage, backgroundImageSrc }) => {
+const Slice = ({
+  id,
+  sliceSize,
+  slices,
+  frontImage,
+  backgroundImageSrc,
+  foregroundRenderWidth = 283, //default width for foreground image if none passed
+}) => {
   const {
     src: foregroundImageSrc,
-    width: foregroundImageWidth = 0
+    width: foregroundImageWidth = 0,
   } = frontImage;
-
-  const foregroundRenderWidth = 283; // in px
 
   const sliceWidth = sliceSize.width / slices;
   const sliceOffset = -(id * sliceWidth);
 
-  const foregroundScaling = foregroundRenderWidth / foregroundImageWidth;
-
   const foregroundOffset = foregroundImageWidth // avoid possible divide by zero if no foreground image set
-    ? sliceOffset +
-      sliceSize.width / 2 -
-      foregroundScaling * (foregroundImageWidth / 2) // move to midpoint of scaled forground image
+    ? sliceOffset + sliceSize.width / 2 - foregroundRenderWidth / 2 // move to midpoint of scaled forground image
     : 0;
 
   const bgStyle = {
     height: `${sliceSize.height}px`,
     width: `${sliceWidth}px`,
-    background: `url(${backgroundImageSrc}) left -${
-      id * sliceWidth
-    }px top 0px no-repeat`,
-    backgroundSize: `cover`,
+    background: `url(${backgroundImageSrc}) left -${id *
+      sliceWidth}px top 0px no-repeat`,
+    backgroundClip: "border-box",
+    backgroundSize: "cover",
     border: "1px solid red",
-    backgroundClip: "padding-box",
-    position: "relative"
+    position: "relative",
   };
 
   const fgStyle = {
     ...bgStyle,
-    border: "1px solid transparent",
     background: `url(${foregroundImageSrc}) left ${foregroundOffset}px center no-repeat`,
+    backgroundClip: "border-box",
     backgroundSize: `${foregroundRenderWidth}px auto`,
-    backgroundClip: "padding-box",
+    border: "1px solid transparent",
     zIndex: 1,
-    position: "absolute"
+    position: "absolute",
   };
 
   return (
-    <div style={bgStyle}>
-      <div style={fgStyle}></div>
+    <div style={bgStyle} data-testid="background">
+      <div style={fgStyle} data-testid="foreground"></div>
     </div>
   );
 };
